@@ -22,7 +22,7 @@ import OldCityMarket from '../../assets/oldCityMarket.avif';
 import OldCityMarket2 from '../../assets/oldCityMarket2.png';
 import Trash from '../../assets/Trash.jpeg';
 import Trash2 from '../../assets/Trash2.jpeg';
-import RebuldingVideo from '../../assets/rebulding.mp4';
+import RebuldingVideo from '../../assets/Rebulding.mp4';
 
 const heritageImages = [
   {
