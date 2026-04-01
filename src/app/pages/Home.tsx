@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Play } from 'lucide-react';
 import ImageComparisonSlider from '../components/ImageComparisonSlider';
@@ -23,6 +23,9 @@ import OldCityMarket2 from '../../assets/oldCityMarket2.png';
 import Trash from '../../assets/Trash.jpeg';
 import Trash2 from '../../assets/Trash2.jpeg';
 import RebuldingVideo from '../../assets/Rebulding.mp4';
+import HouseModelGlb from '../../assets/3dhouse/base_basic_pbr.glb';
+
+const HouseModelViewer = lazy(() => import('../components/HouseModelViewer'));
 
 const heritageImages = [
   {
@@ -152,6 +155,33 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* 3D house model */}
+      <section className="px-4 pb-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.7 }}
+          >
+            <h2 className="mb-2 text-center text-2xl font-medium text-[var(--heritage-gold)] sm:text-3xl">
+              Heritage house — 3D
+            </h2>
+            <p className="mb-6 text-center text-sm text-[var(--heritage-stone)] sm:text-base">
+              Drag to rotate · Scroll or pinch to zoom
+            </p>
+            <Suspense
+              fallback={
+                <div className="flex h-[min(70vh,560px)] min-h-[280px] items-center justify-center rounded-lg border border-[var(--heritage-gold)]/30 bg-[var(--heritage-stone-dark)]/40 text-[var(--heritage-stone)]">
+                  Loading 3D view…
+                </div>
+              }
+            >
+              <HouseModelViewer modelUrl={HouseModelGlb} />
+            </Suspense>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Gallery Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
